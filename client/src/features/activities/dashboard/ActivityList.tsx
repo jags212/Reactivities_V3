@@ -4,10 +4,14 @@ import { useActivities } from "../../../lib/hooks/useActivities";
 
 export default function ActivityList() {
 
-    const { activities, isPending } = useActivities();
+    const { activities, isLoading } = useActivities();
 
-    if (isPending || !activities) {
+    if (isLoading) {
         return <Typography>Loading...</Typography>;
+    }
+
+    if (!activities) {
+        return <Typography>No activities found</Typography>;
     }
 
     return (
