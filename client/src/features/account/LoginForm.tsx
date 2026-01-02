@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginSchema } from "../../lib/schemas/loginSchema";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useAccount } from "../../lib/hooks/useAccount";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { LockOpen } from "@mui/icons-material";
@@ -13,7 +13,7 @@ export default function LoginForm() {
         resolver: zodResolver(loginSchema)
     });
 
-    const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
+    const onSubmit = async (data: LoginSchema) => {
         await loginUser.mutateAsync(data);
     }
 
@@ -25,7 +25,7 @@ export default function LoginForm() {
                 display: 'flex',
                 flexDirection: 'column',
                 p: 3,
-                gap: 2,
+                gap: 3,
                 maxWidth: 'md',
                 mx: 'auto',
                 borderRadius: 3
